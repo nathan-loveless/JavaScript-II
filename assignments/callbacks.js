@@ -68,7 +68,7 @@ multiplyNums(5, 4, (multiNum) => { console.log(multiNum); });
      cb(found);
  }
 
-contains('blah', items, (value) => { console.log(value); });
+contains('Notebook', items, (value) => { console.log(value); });
 
 /* STRETCH PROBLEM */
 
