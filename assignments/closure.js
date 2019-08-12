@@ -2,7 +2,7 @@
 // Write a simple closure of your own creation.  Keep it simple!
 
 // Simple Closure
-let simpleArray ['This', 'is' 'outside', 'lexical', 'scope'];
+let simpleArray = ['This', 'is', 'outside', 'lexical', 'scope'];
 function doThis()
 {
 	// no simpleArray declared inside lexical/private scope, it will look outward.

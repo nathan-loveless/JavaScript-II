@@ -80,7 +80,34 @@ console.log(ticketPriceTotal);
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// add-up all the donations received
+let donations = 0;
+
+// Note this is an IIFE function
+(function() { runners.forEach(element => donations += element.donation); }());
+console.log('$' + donations);
+
 
 // Problem 2
+// Set the place each runner finished the 5k at and add it to the array
+var place = [];
+runners.forEach(element => {
+	while(place.length < 50)
+		{
+			let finished = Math.round(Math.random() * 50);
+			if(!place.includes(finished + 1)) { place.push(finished + 1)};	
+		}	
+});
+
+runners.forEach((element, index) => element.place = place[index]);
+console.log(runners);
 
 // Problem 3
+// Now that we have the place added we can display the top 10 runners, the array is sorted and then displayed by name and place
+// NOTE: IIFE function
+(function() {
+let topTen = [];
+topTen = runners.filter(element => element.place <= 10);
+topTen.sort((num1, num2) => num1.place - num2.place);
+topTen.forEach(element => console.log('Name: ' + element.first_name + ' ' + element.last_name + ' Place: ' + element.place));
+ }());

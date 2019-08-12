@@ -71,9 +71,15 @@ multiplyNums(5, 4, (multiNum) => { console.log(multiNum); });
 contains('Notebook', items, (value) => { console.log(value); });
 
 /* STRETCH PROBLEM */
+const dupArray = ['one', 'two', 'three', 'one', 'four', 'four', 'five', 'six', 'three'];
+const uniqueArray = [];
 
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+	cb(Array.from(new Set(array)));
+	
 }
+
+removeDuplicates(dupArray, (array) =>  { console.log(array); });
