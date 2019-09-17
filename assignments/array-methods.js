@@ -56,16 +56,19 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
+runners.forEach(element => fullName.push(element.first_name + ' ' + element.last_name));
+
 console.log(fullName);
+
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
-let allCaps = [];
+let allCaps = runners.map(element => element.first_name.toUpperCase() );
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
-let largeShirts = [];
+let largeShirts = runners.filter(element =>  element.shirt_size === 'L');
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
@@ -77,7 +80,34 @@ console.log(ticketPriceTotal);
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// add-up all the donations received
+let donations = 0;
+
+// Note this is an IIFE function
+(function() { runners.forEach(element => donations += element.donation); }());
+console.log('$' + donations);
+
 
 // Problem 2
+// Set the place each runner finished the 5k at and add it to the array
+var place = [];
+runners.forEach(element => {
+	while(place.length < 50)
+		{
+			let finished = Math.round(Math.random() * 50);
+			if(!place.includes(finished + 1)) { place.push(finished + 1)};	
+		}	
+});
+
+runners.forEach((element, index) => element.place = place[index]);
+console.log(runners);
 
 // Problem 3
+// Now that we have the place added we can display the top 10 runners, the array is sorted and then displayed by name and place
+// NOTE: IIFE function
+(function() {
+let topTen = [];
+topTen = runners.filter(element => element.place <= 10);
+topTen.sort((num1, num2) => num1.place - num2.place);
+topTen.forEach(element => console.log('Name: ' + element.first_name + ' ' + element.last_name + ' Place: ' + element.place));
+ }());
